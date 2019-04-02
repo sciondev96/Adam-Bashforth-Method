@@ -27,26 +27,27 @@ public class AdamBash
 		xvalue[i]=lower;
 		for(int j=1;j<n;j++)
 		{
-			xvalue[j]=(xvalue[j-1]+h);
+			xvalue[j]=(xvalue[j-1]+h); 		 //used to calculate the range of x values
 		}
 		System.out.println("Enter the values of y: ");
 		for(int j=0;j<n;j++)
 		{
-			yvalue[j]=sc.nextDouble();			
+			yvalue[j]=sc.nextDouble();	        //used to accept y values		
 		}
-		sc.nextLine();	
+		sc.nextLine();                                 //used to accept endline character after number input
 		System.out.println("Enter the equation: ");
-		String eqn=sc.nextLine();
-		Convert c=new Convert(eqn);
+		String eqn=sc.nextLine();   	              //used to accept string
+		Convert c=new Convert(eqn);		     //used to convert infix expression to postfix
 		//System.out.println(c.doTrans());
-		Evaluate e=new Evaluate();
+		Evaluate e=new Evaluate();		    //used to evaluate the postfix expression
 		for(int j=0;j<n;j++)
 		{
-			function[j]=e.calculate(c.doTrans(),xvalue[j],yvalue[j]);
+			function[j]=e.calculate(c.doTrans(),xvalue[j],yvalue[j]); //used to calculate y' values
 		}
 		System.out.println("y' values for the given equation "+eqn);
 		for(int j=0;j<n;j++)
 			System.out.println(df.format(function[j]));
+		//ADAM BASHFORTH METHOD FORMULA 
 		result=yvalue[3]+((h/24)*((55*function[3])-(59*function[2])+(37*function[1])-(9*function[0])));
 		System.out.println("y4p: "+df.format(result));
 		function[4]=e.calculate(c.doTrans(),search,result);
